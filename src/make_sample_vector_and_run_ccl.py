@@ -10,7 +10,7 @@ import cv2
 
 
 def gaussian_fitting(img):
-    f_max, f_min, n_bin = 30000, 0, 3000
+    f_max, f_min, n_bin = 3000, 0, 3000
     x = np.linspace(f_min, f_max, n_bin + 1) + (f_max - f_min) / n_bin / 2
     x = x[:-1]
     pdf_fitted = np.histogram(img.flatten(), bins=n_bin, range=(f_min, f_max))
