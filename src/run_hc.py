@@ -13,10 +13,13 @@ if __name__ == "__main__":
 
     # 階層的クラスタリング
     Z = centroid(pdist(gng_output, 'correlation'))
-    dendrogram(Z, color_threshold=0.0035)
+    dendrogram(Z, color_threshold=0.045)    
+    cl = fcluster(Z, 0.045, criterion='distance')
+    plt.axhline(0.045, linestyle='--', c='purple')
+    plt.title('cluster:{}'.format(cl.max()))
+    plt.savefig('../reports/hc_result')
     plt.show()
 
-    cl = fcluster(Z, 0.0035, criterion='distance')
 
     np.save('../data/result/hc_result.npy', cl)
 
@@ -44,6 +47,7 @@ if __name__ == "__main__":
     ax.scatter(gng_output[:, 0], gng_output[:, 1], gng_output[:, 2], c=np.array(cl), s=50, zorder=1, alpha=0.2, cmap=cm.hsv)
     sc = ax.scatter(gng_input[:, 0], gng_input[:, 1], gng_input[:, 2], c=np.array(patch_labels2), s=2, zorder=2, cmap=cm.hsv)
     plt.colorbar(sc)
+    plt.savefig('../reports/gng_hc_clustering')
     plt.show()
 
     np.save('../data/result/patch_labels2.npy', patch_labels2)
