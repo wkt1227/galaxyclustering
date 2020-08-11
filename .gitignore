@@ -166,4 +166,7 @@ tags
 
 # *** Project ***
 ./reports
+./reports1
 ./data/result
+./data/result2
+./data/fits
