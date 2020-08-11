@@ -163,3 +163,7 @@ Sessionx.vim
 tags
 # Persistent undo
 [._]*.un~
+
+# *** Project ***
+./reports
+./data/result
