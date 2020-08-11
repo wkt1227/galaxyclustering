@@ -1,0 +1,9 @@
+fits画像: 10枚
+
+sample vector: radially average
+
+GNG output: 250 nodes and 70 edges
+
+HC threshold: 0.045
+
+HC2 max cluster: 40
