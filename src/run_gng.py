@@ -18,8 +18,8 @@ if __name__ == "__main__":
         step=0.1,
         neighbour_step=0.001,
 
-        max_edge_age=250,
-        max_nodes=500,
+        max_edge_age=70,
+        max_nodes=250,
         n_iter_before_neuron_added=200,
 
         after_split_error_decay_rate = 0.5,
@@ -27,7 +27,7 @@ if __name__ == "__main__":
         min_distance_for_update=0.2,
     )
     
-    gng.train(patch_features, epochs=40)
+    gng.train(patch_features, epochs=20)
     
     gng_result = []
     
@@ -48,9 +48,9 @@ if __name__ == "__main__":
         ax.scatter(x, y, z, color='orangered', zorder=2, s=10)
         ax.plot(x, y, z, color='grey', zorder=1, lw=1)
 
+    plt.title('input:{}, output:{}'.format(len(patch_features), len(gng.graph.nodes)))
     ax.set_xlabel('sample vector[0]')
     ax.set_ylabel('sample vector[1]')
     ax.set_zlabel('sample vector[2]')
-    ax.set_title('nodes:{}'.format(len(gng.graph.nodes)))
+    plt.savefig('../reports/gng_result' + ' input:{}, output:{}'.format(len(patch_features), len(gng.graph.nodes)))
     plt.show()
-    
