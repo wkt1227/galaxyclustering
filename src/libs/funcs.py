@@ -1,7 +1,8 @@
 import numpy as np
 from scipy import ndimage
 from pydl.photoop.photoobj import unwrap_objid
-# import requests
+import requests
+
 
 # 画像からパワースペクトルを計算する
 def get_psd2d(img):
@@ -43,25 +44,27 @@ def get_fits_name_from_objid(objid, f = 'r'):
     camcol = str(params['camcol'])
     frame = str(params['frame'])
 
-    fits_name = 'fpC-' + run.zfill(6) + '-' + f + camcol + '-' + frame.zfill(4) + 'fit.gz'
+    fits_name = 'fpC-' + run.zfill(6) + '-' + f + camcol + '-' + frame.zfill(4) + '.fit.gz'
 
     return fits_name
 
 
-# def download_sdss_img(file_name, ra, dec, width, height, opt=''):
-#     dr7 = 'http://skyservice.pha.jhu.edu/DR7/ImgCutout/getjpeg.aspx'
+
+def download_sdss_img(file_name, ra, dec, width, height, opt=''):
+    dr7 = 'http://skyservice.pha.jhu.edu/DR7/ImgCutout/getjpeg.aspx'
+    dr14 = 'http://skyserver.sdss.org/dr14/SkyServerWS/ImgCutout/getjpeg'
     
-#     response = requests.get(
-#         dr7,
-#         params={
-#             'ra': ra, 
-#             'dec': dec, 
-#             'width': width, 
-#             'height': height,
-#             'opt': opt
-#             }
-#     )
+    response = requests.get(
+        dr14,
+        params={
+            'ra': ra, 
+            'dec': dec, 
+            'width': width, 
+            'height': height,
+            'opt': opt
+            }
+    )
     
-#     if response.status_code == 200:
-#         with open(file_name, 'wb') as f:
-#             f.write(response.content)
+    if response.status_code == 200:
+        with open(file_name, 'wb') as f:
+            f.write(response.content)
