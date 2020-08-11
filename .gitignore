@@ -165,8 +165,8 @@ tags
 [._]*.un~
 
 # *** Project ***
-./reports
-./reports1
-./data/result
-./data/result2
-./data/fits
+./reports/
+./reports1/
+./data/result/
+./data/result2/
+./data/fits/
